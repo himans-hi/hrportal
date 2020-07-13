@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    .bs-example{
+        margin: 20px;        
+    }
+	</style>
+
+</head>
+<body style="background-color:lightblue;">
+
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+<div class="imgcontainer">
+    <img src="img_avatar2.png" alt="Avatar" class="avatar" width="100px" height="100px" />
+	
+    	<p>Welcome <strong><?php echo $user; ?></strong></p>
+    	<p> <a href="logout.php" style="color: red;"><b><h1>logout</h1></b></a> </p>
+  </div>
+  <div class="sidenav">
+  <a href="user_profile.php">Mark Attendance</a>
+  <br/>
+  <a href="view_attendance.php">Attendance Status</a>
+  <br/>
+  <a href="leave_application_form.html">Leave Form</a>
+  <br/>
+  <a href="#contact">Leave Status</a>
+  <br/>
+  <a href="#">List Of Holidays</a>
+  <br/>
+</div>
+  </div>
+  
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">  
+<?php echo $message;?>
+<h1 align="left"><b>Leave Application Form</b></h1>
+    <form action="leave.php" method="post">
+        <div class="form-group row">
+            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
+            </div>
+        </div>
+		<div class="form-group row">
+            <label for="department" class="col-sm-2 col-form-label">Department</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="department" name="department" placeholder="department" required>
+            </div>
+      </div>
+	  <div class="form-group row">
+            <label for="employeeid" class="col-sm-2 col-form-label">Employee Id</label>
+            <div class="col-sm-6">
+                <input type="int" class="form-control" id="employee_id" name="employee_id" placeholder="employee id" required>
+            </div>
+      </div>
+	  
+	  <div class="form-group row">
+            <label for="leave" class="col-sm-2 col-form-label">Leave</label>
+            <div class="col-sm-6">
+                <td><select class="form-control" id="leave_day" name="leave_day">
+				<option value>select</option>
+                <option>Full Day Leave</option>
+                <option>Half Day Leave</option>
+                </select></td>				
+            </div>
+      </div>
+	  
+	  
+	  
+        <div class="form-group row">
+            <label for="leaveCategory" class="col-sm-2 col-form-label">Leave Category</label>
+            <div class="col-sm-6">
+                <td><select class="form-control" id="leave" name="leave">
+				<option value>select</option>
+                <option>Sick Leave</option>
+                <option>Earned Leave</option>
+<option>Casual Leave</option>
+<option>Transit Leave</option>
+<option>Maternity Leave</option>
+<option>Paternity Leave</option>
+<option>Leave Without Pay</option>
+<option>Birthday Leave</option>
+<option>Anniversary Leave</option>
+<option>Restricted Holiday</option>
+<option>Personal Emergency Leave</option>
+<option>Work From Home</option>
+</select></td>				
+            </div>
+      </div>
+	  
+	  <div class="form-group row">
+            <label for="periodFrom" class="col-sm-2 col-form-label">Period From</label>
+            <div class="col-sm-6">
+                <input type="date" class="form-control" id="fromdate" name="fromdate" placeholder="fromdate" required>
+            </div>
+      </div>
+	  <div class="form-group row">
+            <label for="periodTo" class="col-sm-2 col-form-label">Period To</label>
+            <div class="col-sm-6">
+                <input type="date" class="form-control" id="todate" name="todate" placeholder="todate" required>
+            </div>
+      </div>
+	  <div class="form-group row">
+            <label for="leavePurpose" class="col-sm-2 col-form-label">Leave Purpose</label>
+            <div class="col-sm-6">
+                <textarea name="description" rows="6" class="form-control" id="description" name="description" placeholder="Enter leave purpose" required></textarea>
+
+            </div>
+      </div>
+	  <div class="form-group row">
+            <label for="mailto" class="col-sm-2 col-form-label">Mail To</label>
+            <div class="col-sm-6">
+                <input type="email" value="himanshi.gupta@digispice.com" class="form-control" id="mail_to" name="mail_to" placeholder="mail_to" required>      
+				</div>
+      </div>
+        <div class="form-group row">
+            <div class="col-sm-6 offset-sm-2">
+                <button type="submit"  id ="submit" name="submit" value="send" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

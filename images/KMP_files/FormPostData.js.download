@@ -1,0 +1,160 @@
+﻿$(document).ready(function () {
+
+    $("#EmpCode").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && e.which != 45 && (e.which < 65 || e.which > 90) && (e.which < 97 || e.which > 122) && (e.which < 48 || e.which > 57)) { return false; } else {
+
+            $(this).attr('maxlength', 10);
+
+        }
+    });
+
+
+    $("#EmpCode").keyup(function (e) {
+
+        if ($(this).val() != "") {
+            $(this).css("border", "#e2e2e2 solid 1px");
+        }
+        else {
+            $(this).css("border", "red solid 1px");
+        }
+
+    });
+    $("#txtMobileNo").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) { return false; } else {
+
+            $(this).attr('maxlength', 10);
+
+        }
+    });
+
+
+
+
+
+    $("#txtMobileNo").keyup(function (e) {
+        document.getElementById("lblMobile").innerHTML = "";
+        if ($(this).val() != "") {
+            $(this).css("border", "1px solid #e2e2e2");
+        }
+        else {
+            $(this).css("border", "red solid 1px");
+        }
+
+    });
+
+
+
+
+
+
+});
+
+function postdata() {
+
+
+    var FocusId = "";
+    var errorCode = "0";
+    var EmployeeCode = $("#EmpCode").val();
+    var EmployeeName = $("#Name").val();
+
+
+    //    var MobileNo = $("#MobileNo").val();
+
+
+
+
+    //    if ($("#MobileNo").val() != "") {
+    //        if ($("#MobileNo").val().length < 10) {
+    //            $("#lblMobile").text("Invalid mobile no.It should be 10 digit no.");
+    //            $("#MobileNo").css("border", "red solid 1px");
+    //            $("#MobileNo").focus();
+    //            errorCode = 1;
+
+    //        }
+    //        else {
+    //            $("#MobileNo").css("border", "#DDD solid 1px");
+    //        }
+    //    }
+    //    if (MobileNo == "") {
+    //        $("#MobileNo").css("border", "red solid 1px");
+    //        errorCode = 1;
+    //        $("#MobileNo").focus();
+    //    }
+    //    else {
+    //        $("#MobileNo").css("border", "1px solid #e2e2e2");
+    //    }
+
+
+    if (EmployeeName == "") {
+        $("#Name").css("border", "red solid 1px");
+        errorCode = 1;
+        $("#Name").focus();
+    }
+    else {
+        $("#Name").css("border", "1px solid #e2e2e2");
+    }
+
+    if (EmployeeCode == "") {
+        $("#EmpCode").css("border", "red solid 1px");
+        errorCode = 1;
+        $("#EmpCode").focus();
+    }
+    else {
+        $("#EmpCode").css("border", "1px solid #e2e2e2");
+    }
+
+
+
+    if (errorCode == "0") {
+
+        $("#Step1FormId").submit();
+    }
+    else {
+
+        return false;
+    }
+
+
+}
+
+function CheckEmpty(control) {
+    if (control.val() == '') {
+
+        control.css("border", "#dd4b39 solid 1px");
+        cnt = 1;
+        if (FocusId == "") {
+            FocusId = control.attr("id");
+        }
+
+    } else {
+        FocusId = "";
+        control.css("border", "#DDD solid 1px");
+    }
+}
+
+
+
+function validateVerify() {
+    var Idverify = $("#txt_verification").val();
+    $("#lbl_verify").hide();
+    $("#lbl_verify").text("");
+
+    var errorcode = 0;
+    if (Idverify == "") {
+
+        $("#lbl_verify").show();
+        $("#lbl_verify").text("This field is required");
+        $("#txt_verification").css("border", "red solid 1px");
+        $("#btnMatch").show();
+
+        errorcode = 1;
+    }
+    if (errorcode == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+
+}

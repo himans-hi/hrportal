@@ -1,0 +1,445 @@
+<?php
+include('validate.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ADD EMPLOYEE FORM</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+  <script>
+  function REG_FORM()                                    
+ { 
+  //  var id = document.forms["RegForm"]["id"]; 
+    var fname1 = document.forms["RegForm"]["fname"]; 
+    var lname1 = document.forms["RegForm"]["lname"]; 	
+    var department = document.forms["RegForm"]["Dept"];    
+    var DepartmentLocation = document.forms["RegForm"]["DeptLoc"];  
+    var contact =  document.forms["RegForm"]["Contact"];  
+    var Email = document.forms["RegForm"]["email"];  
+    var AccountManager = document.forms["RegForm"]["manager"];  
+	var Grade = document.forms["RegForm"]["grade"];  
+    var payscale = document.forms["RegForm"]["PayScale"];  
+	var Salary = document.forms["RegForm"]["tds"];  
+    var MealFacility = document.forms["RegForm"]["mealfacility"];  
+	var CabFacility = document.forms["RegForm"]["cabfacility"];   
+	var City = document.forms["RegForm"]["city"];  
+    var Pincode = document.forms["RegForm"]["pincode"];  
+	var Aadhar = document.forms["RegForm"]["aadhar"];  
+    var Pan = document.forms["RegForm"]["pan"];  
+	
+   
+    if (fname1.value == "")                                  
+    { 
+         
+        window.alert("Please enter your first name."); 
+        fname1.focus(); 
+        return false; 
+    } 
+	
+	if(!isNaN(fname1.value))
+    {
+		
+    window.alert("Please Enter Only Characters");
+    fname1.focus();
+    return false;
+    }
+	
+	if (lname1.value == "")                                  
+    { 
+
+        window.alert("Please enter last name."); 
+        lname1.focus(); 
+        return false; 
+    } 
+	
+	if(!isNaN(lname1.value))
+    {
+		
+       window.alert("Please Enter Only Characters");
+       lname1.focus();
+       return false;
+    }
+
+  if(department.value=="")
+   {
+	   
+   window.alert("Please enter your valid dept."); 
+        department.focus(); 
+       return false; 
+  }
+    
+   if (DepartmentLocation.value == "")                                   
+    { 
+        window.alert("Please enter your valid dept location."); 
+        DepartmentLocation.focus(); 
+       return false; 
+   }
+   if (contact.value == "")                                   
+    { 
+        window.alert("Please enter your contact."); 
+        contact.focus(); 
+       return false; 
+   }
+   if(contact.value.length!=10)
+   {
+	   
+        window.alert("Please enter valid length."); 
+        contact.focus(); 
+       return false; 
+   }
+   if (Email.value == "")                                   
+    { 
+        window.alert("Please enter your valid email."); 
+        Email.focus(); 
+       return false; 
+   }
+   if (Email.value.indexOf("@", 0) < 0)                 
+  { 
+       window.alert("Please enter a valid e-mail address."); 
+       Email.focus(); 
+     return false; 
+   } 
+   
+   if (Email.value.indexOf(".", 0) < 0)                 
+    { 
+       window.alert("Please enter a valid e-mail address."); 
+        Email.focus(); 
+        return false; 
+   }  
+	   
+   if (AccountManager.value == "")                                   
+    { 
+        window.alert("Please enter your account manager."); 
+        AccountManager.focus(); 
+       return false; 
+   }
+      
+   if (Grade.value == "")                                   
+    { 
+        window.alert("Please enter your grade."); 
+        Grade.focus(); 
+       return false; 
+   }
+   
+	   
+   if (payscale.value == "")                                   
+    { 
+        window.alert("Please enter your payScale."); 
+        payscale.focus(); 
+       return false; 
+   }
+   
+   if (Salary.value == "")                                   
+    { 
+        window.alert("Please enter your Salary."); 
+        Salary.focus(); 
+       return false; 
+   }
+   if(isNaN(Salary.value))                                   
+    { 
+        window.alert("Please enter only numbers."); 
+        Salary.focus(); 
+       return false; 
+   }
+
+   
+   if (MealFacility.value == "")                                    
+    { 
+	var formValid=false;
+	var i=0;
+	while(!formValid && i< MealFacility.length)
+	{
+	if (MealFacility[i].checked)formValid=true;
+	i++;
+	}
+        if(!formValid)alert("please enter value of meal facility!");
+       return formValid;			
+   }
+   
+   if (CabFacility.value == "")                                  
+    { 
+	var formValid=false;
+	var i=0;
+	while(!formValid && i< CabFacility.length)
+	{
+	if (CabFacility[i].checked)formValid=true;
+	i++;
+	}
+        if(!formValid)alert("please enter value of cab facility!");
+       return formValid;		
+   	  
+   }
+
+ if (City.value == "")                                   
+    { 
+        window.alert("Please enter your City."); 
+        City.focus(); 
+       return false; 
+   }
+   
+   if(!isNaN(City.value))
+     {
+     window.alert("Please Enter Only Characters");
+     City.focus();
+     return false;
+    }
+	
+    if (Pincode.value == "")                                   
+    { 
+        window.alert("Please enter your PinCode."); 
+        Pincode.focus(); 
+       return false; 
+   }
+   
+   if(isNaN(Pincode.value))                                   
+    { 
+        window.alert("Please entr only number.."); 
+        Pincode.focus(); 
+       return false; 
+   }
+   
+    if (Aadhar.value == "")                                   
+    { 
+        window.alert("Please enter your Aadhar number."); 
+        Aadhar.focus(); 
+       return false; 
+   }
+   
+   if(isNaN(Aadhar.value))                                   
+    { 
+        window.alert("Please enter only numbers."); 
+        Salary.focus(); 
+       return false; 
+   }
+   
+    if (Pan.value == "")                                   
+    { 
+        window.alert("Please enter your Pan number."); 
+        Pan.focus(); 
+       return false; 
+   }
+   
+   if(isNaN(Pan.value))                                   
+    { 
+        window.alert("Please enter only numbers."); 
+        Pan.focus(); 
+       return false; 
+   } 
+    return true; 
+  }
+  </script>
+  </head>
+  <body>
+  
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+<?php
+  include('include/navbar.php');
+?>
+<div class="container-fluid">
+ <div class="modal-fade" id="employeeform" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document"> 
+<div class="modal-content">	
+	<div class="modal-header"> 
+<h5 class="modal-title" id="exampleModalLabel">EmployeeForm</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>	
+		<?php echo $message; ?>
+  <form name="RegForm" action="new2.php" onsubmit="return REG_FORM()" method="post" enctype="multipart/form-data">
+<div class="modal-body">  
+  
+  <div class="form-group">
+  <label>First Name</label>
+  <input type="text" name="fname" class="form-control" placeholder="enter first name">
+  </div>
+  <div class="form-group">
+  <label>Last Name</label>
+  <input type="text" name="lname" class="form-control" placeholder="enter last name">
+  </div>
+  
+  
+  <div class="form-group">
+  <label>Department</label>
+ <!-- <input type="inpu" name="phone" class="form-control" placeholder="enter phone number">-->
+ <select name='Dept' class="form-control" placeholder="enter department type">
+<option value >select</option>
+<option >admin</option>
+<option >account</option>
+<option >finance</option>
+<option >hr</option>
+<option >technical</option>
+</select>
+  </div>
+  
+   <div class="form-group">
+  <label>DepartmentLocation</label>
+ <!-- <input type="inpu" name="phone" class="form-control" placeholder="enter phone number">-->
+ <select name='DeptLoc' class="form-control" placeholder="enter department location">
+<option value >select</option>
+<option >delhi</option>
+<option >uttar pradesh</option>
+<option >madhya pradesh</option>
+<option >punjab</option>
+<option >mumbai</option>
+</select>
+  </div>
+  
+  
+ <div class="form-group">
+  <label>Contact</label>
+  <input type="text" name="Contact" maxlength='10' class="form-control" placeholder="enter contact">
+  </div>
+    
+  <div class="form-group">
+  <label>email</label>
+  <input type="text" name="email" class="form-control" placeholder="enter email">
+  </div>
+  
+  <div class="form-group">
+  <label>Subject</label>
+  <input type="text" name="subject" class="form-control" placeholder="enter subject">
+  </div>
+  
+  <div class="form-group">
+  <label>Password</label>
+  <input type="text" name="pwd" class="form-control" placeholder="enter password">
+  </div>
+  
+   <div class="form-group">
+  <label>AccountManager</label>
+ <!-- <input type="inpu" name="phone" class="form-control" placeholder="enter phone number">-->
+ <select name='manager' class="form-control" placeholder="enter Account Manager">
+<option value >select</option>
+<option >Himanshi gupta</option>
+<option >Himanshu gupta</option>
+<option >Anamika Parashar</option>
+<option >Nandini patel</option>
+<option >Rajni rajput</option>
+</select>
+  </div>
+  
+   <div class="form-group">
+  <label>Grade</label>
+ <!-- <input type="inpu" name="phone" class="form-control" placeholder="enter phone number">-->
+ <select name='grade' class="form-control" placeholder="enter grade">
+<option value >select</option>
+<option >A</option>
+<option >B</option>
+<option >C</option>
+<option >D</option>
+<option >E</option>
+</select>
+  </div>
+  
+  <div class="form-group">
+  <label>PayScale</label>
+ <!-- <input type="inpu" name="phone" class="form-control" placeholder="enter phone number">-->
+ <select name='PayScale' class="form-control" placeholder="enter payscale">
+<option value >select</option>
+<option >1000-10000</option>
+<option >10000-50000</option>
+<option >50000-100000</option>
+<option >100000</option>
+</select>
+  </div>
+  
+  
+  <div class="form-group">
+  <label>Salary</label>
+  <input type="text" name="tds" class="form-control" placeholder="enter salary">
+  </div>
+  
+  <div class="form-group">
+  <label>MealFacility</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <td><input type="radio" name="mealfacility" value="yes"/>yes</td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <td><input type="radio" name="mealfacility" value="no"/>no</td>
+  </div>
+  
+  
+   <div class="form-group">
+  <label>CabFacility</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+ <td><input type="radio" name="cabfacility"  value="yes" />yes</td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <td><input type="radio" name="cabfacility" value="no" />no</td>
+  </div>
+  
+  <div class="form-group">
+  <label>City</label>
+  <input type="text" name="city" class="form-control" placeholder="enter city">
+  </div>
+  
+  <div class="form-group">
+  <label>PinCode</label>
+  <input type="text" name="pincode" class="form-control" placeholder="enter pincode">
+  </div>
+ 
+  <div class="form-group">
+  <label>AadharNumber</label>
+  <input type="file" name="upload[]" class="form-control" placeholder="enter AadharNumber">
+  </div>
+  
+  <div class="form-group">
+  <label>PanNumber</label>
+  <input type="file" name="upload[]" class="form-control" placeholder="enter PanNumber">
+  </div>
+  
+  <div class="form-group">
+  <label>10thMarksheet</label>
+  <input type="file" name="upload[]" class="form-control" placeholder="enter 10thMarksheet">
+  </div>
+  <br/>
+  
+  <div class="form-group">
+  <label>12thMarksheet</label>
+  <input type="file" name="upload[]" class="form-control" placeholder="enter 12thMarksheet">
+  </div>
+   
+  <div class="form-group">
+  <label>Status</label>
+ <!-- <input type="inpu" name="phone" class="form-control" placeholder="enter phone number">-->
+ <select name='status' class="form-control" placeholder="enter status">
+<option value >select</option>
+<option >active</option>
+<option >update</option>
+<option >pending</option>
+</select>
+  </div>
+  
+  </div>
+ <!-- <div class="modal-footer">  -->
+  <a href="login2.html"><button type="button" class="btn btn-secondary">close</button></a>&nbsp&nbsp
+ <a href="view.php"><button type="submit" name="submit" value="send" class="btn btn-primary">Save</button></a>&nbsp&nbsp
+<!-- </div > -->
+  </form>	
+  </div>
+  </div>
+  </div> 
+  </div>
+  </div>
+  
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+  
+  </body>
+  </html>

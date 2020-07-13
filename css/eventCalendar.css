@@ -1,0 +1,227 @@
+/*= CORE CSS */
+.hidden { display:none; }
+
+.eventCalendar-wrap {
+	position:relative;
+	overflow: visible;
+	padding: 0;
+	z-index: 0;
+}
+.eventCalendar-wrap .arrow { 
+	position:absolute; 
+	z-index:5; 
+	top:3px;
+}
+	.eventCalendar-wrap .prev {
+		left:3px;
+	}
+	.eventCalendar-wrap .next {
+		right:3px;
+	}
+	
+.eventsCalendar-currentTitle .monthTitle {
+	display:block;
+	text-align:center;
+}
+	.eventsCalendar-monthWrap {
+		position: relative;
+		top:0;
+		left:0;
+		z-index:2;
+	}
+		.eventsCalendar-monthWrap.currentMonth { 
+			z-index:1;
+		}	
+.eventsCalendar-daysList { 
+	display:table;
+	width:100%;
+}
+	.eventsCalendar-daysList.showAsWeek {
+		display:block;
+	}
+	
+	.eventsCalendar-daysList li {
+		display:table-cell;
+	}
+		.eventsCalendar-daysList li.dayWithEvents {
+			background:rgba(0,0,0,0.15);
+		} 
+		.eventsCalendar-daysList li.current {
+			background:rgba(0,0,0,0.35);
+		} 
+		.eventsCalendar-daysList.showAsWeek li {
+			display: -moz-inline-stack;
+        display: inline-block;
+        *display: inline;
+
+			/* float:left; */
+			width:14.28%;
+			height:20px;
+			vertical-align: top;
+		}
+	.eventsCalendar-daysList li a {
+		padding:0;
+		display:block;
+		text-align:center;
+		font-size:8px;
+		min-width:7px;
+	}
+.eventsCalendar-loading {
+	display:block;
+	min-width:100px;
+	height:40px;
+	line-height:40px;
+}	
+.eventsCalendar-list {
+	position:relative;
+	z-index:1;
+	
+}	
+	.eventsCalendar-list.oldEventList {
+		z-index:2;
+	}
+	.eventsCalendar-subtitle {
+		padding-left:5px;
+		font-weight: normal;
+		font-size: 124%;
+		color: #B7DEF7;
+	}
+/* end of core CSS */	
+	
+
+
+	
+	#calendar .eventsCalendar-list-wrap{
+		display:none;
+	}
+	#calendar:hover .eventsCalendar-list-wrap{
+		display:none;
+	}
+	.eve{
+	display:none;
+	}
+	.eventsCalendar-day{
+		position:relative;
+	}
+	.eventsCalendar-day:hover > .eve:after{
+		content: '\2935';
+		color: #FFF;
+		font-size: 38px;
+		position:absolute;
+		right: -17px;
+		bottom: -24px;
+		/* font-weight: bold; */
+	}
+	.eventsCalendar-day:hover > .eve{
+		display:block;
+		position:absolute;
+		background: #FFFFFF;
+		right: 32px;
+		bottom: 22px;
+		width:200px;
+		font-weight: 100;
+		color: #fff;
+		padding: 1px;
+		box-shadow: 0px 0px 10px #05283E;
+		border-radius: 7px 7px 0px 7px;
+	}
+	.eve span{
+		display:block;
+		border-bottom: 1px solid #EAEAEA;
+	}
+	.eve span:last-child{
+		display:block;
+		border-bottom: 0px solid #EAEAEA;
+	}
+	.eve .hol{
+		
+background-color: #16A50A;
+		
+color: #fff;
+		
+padding: 5px 10px;
+	}
+	.eve .bir{
+		
+color: #0F517B;
+		
+padding: 5px 10px;
+	}
+	.eve .ani{
+		
+color: #0F517B;
+		
+padding: 5px 10px;
+	}
+.eventsCalendar-slider .eventsCalendar-loading{
+	
+	background: rgba(41, 128, 185, 0.52);
+	width:100%;
+	height:100%;
+	margin:0;
+	position:absolute;
+	top:0px;
+	left:0;
+	box-shadow: 0px 0px 0px;
+	border-radius: 0;
+	z-index:6;
+}
+
+
+
+@-moz-keyframes three-quarters-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes three-quarters-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes three-quarters-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* :not(:required) hides this rule from IE9 and below */
+.three-quarters-loader:not(:required) {
+  -moz-animation: three-quarters-loader 1250ms infinite linear;
+  -webkit-animation: three-quarters-loader 1250ms infinite linear;
+  animation: three-quarters-loader 1250ms infinite linear;
+  border: 7px solid #FFF;
+  border-right-color: transparent;
+  border-radius: 16px;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 32px;
+  height: 32px;
+  top: 50%;
+  margin-top: -16px;
+}
+span.no {
+    color: #000;
+    padding: 5px;
+}

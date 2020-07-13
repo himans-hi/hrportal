@@ -1,0 +1,120 @@
+body, html{
+	background: url(//kmp.digispice.com/images/digiLoginPage.png) fixed top right no-repeat;
+	margin:0;
+	padding:0;
+    background-size:100% 100%;   
+    background-position:center;
+	font-family:Sans-Serif;
+
+}
+.sub_btn input {
+    background: #0a3d56  none repeat scroll 0 0 !important; /*Modified on 21 nov 2016 */
+    border-color: #0a3d56 !important; /*Modified on 21 nov 2016 */
+    width: 303px !important; 
+    height:30px !important;
+    border: 1px solid #fff !important; /*Modified on 21 nov 2016 */
+    font-size: 17px !important;
+    margin: 07px 28px 0 0 !important; /*Modified on 21 nov 2016 */
+    font-family:Sans-Serif;
+    font-size: 15px !important;
+                                                             /*Modified on 21 nov 2016 */
+/* text-align: right; */float: right !important;padding: 2px;border-radius: 7px;cursor: pointer;color: #dae8ef;/* text-shadow: 1px 1px 1px #000; */}
+.sub_btn {
+
+
+    
+text-align: right;
+clear: both;position: relative;}
+
+.login_box {
+    position: absolute;
+    width: 360px;
+    height: 255px;  /*Modified on 21 nov 2016 */
+    background-color: #FFFFFF;
+    right: 69px;
+    top: 185px;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 0 3px #0A507F;
+}
+.login_box h2 {
+ font-size:17px;
+ padding:10px;
+ color:#0a3d56;
+ margin:0;
+ line-height:40px;
+ text-align:center;
+ font-weight:normal;
+}
+.input_group{
+	margin:10px;
+	position: relative;
+	padding-left:18px;
+}
+.input_group label{
+	width:100px;
+	color: #0a3d56;
+
+}
+.input_group label, .input_group input{
+	display:inline-block;
+}
+.input_group input{
+	border:none;
+	padding:5px;
+	width: 185px;
+	background-color:#ffffff;
+	border-bottom:1px #0A507F solid;
+	
+}
+.nav-link.forgot-password-link
+  {
+      background:#EEE;
+      padding: 4px;
+      text-decoration:none;
+      color:#000;
+      height: 17px;
+      font-weight:bold;
+      position: absolute;
+      right: 27px;
+      top: 1px;
+      }
+      .footer_menu{
+      	position:fixed;
+      	bottom:0;
+      	text-align: center;
+      	width: 100%;
+      }
+      .input_group input[type=password]::-webkit-input-placeholder {
+ 
+   line-height:24px;
+}
+
+.input_group input[type=password]:-moz-placeholder { /* Firefox 18- */
+   line-height:25px;
+}
+
+.input_group input[type=password]::-moz-placeholder {  /* Firefox 19+ */
+  line-height:25px;
+}
+
+.input_group input[type=password]:-ms-input-placeholder {  
+    line-height:25px;
+}
+#lblErr
+{
+    color: Red;
+    font-style: normal;
+    position: absolute;
+    clear: both;
+    display: block;
+    background-color: #FECF05; /*Modified on 21 nov 2016 */
+    font-size: 12px;
+    text-align: center;
+    border-radius: 0 0 4px 4px;
+    bottom: -31px; /*Modified on 21 nov 2016 */
+}
+#chkRememberMe
+{
+    margin-top:1px;
+}
