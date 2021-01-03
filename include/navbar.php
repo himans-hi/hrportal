@@ -25,6 +25,7 @@
                 if(($_COOKIE['type']=="auth"))
 					{
                 ?>
+				
                 <li><a href="view.php">Read Authentication</a></li>
                 <?php
 					}

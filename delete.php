@@ -22,5 +22,4 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
    }
 
   $conn->close(); 
-  
   ?>

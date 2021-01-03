@@ -249,9 +249,6 @@ return con;
  <div class="card-header py-6">  
 
 <div class="card-body">
-<!-- <div class="text-warning text-center">
-<h2>Display Data</h2>
-</div>  -->
 				
 <div class="row">
 <table class="table table-striped table-bordered">
@@ -263,10 +260,6 @@ return con;
                  <th width="5%">departmentLocation</th> 
 				 <th width="15%"><b>contact</b></th>
                  <th width="30%"><b>email</b></th>
-				<!-- <th>subject</th>-->
-				<!-- <th width="30%"><b>password</b></th>  -->
-				<!-- <th>Salary</th>
-				 <th>Cab Facility</th> -->
 				 <th width="20%">Pincode</th> 
 				 
 				 <th width="20%"><b>Action</b></th>

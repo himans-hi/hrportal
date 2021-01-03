@@ -39,8 +39,9 @@ if(($_COOKIE['type']=="auth"))
       $address=$_POST['address'];
       $PinCode=$_POST['pincode'];
     
-		  echo $query2 = "update students set fname= '$fname2',lname='$lname2', department='$department',departmentlocation='$DepartmentLocation',contact='$contact1',email='$Email',married='$marry',password='$pwd',band='$band',mealfacility='$MealFacility',cabfacility='$CabFacility',current_address='$address',pincode='$PinCode' where id=$id " ;
-		  $result2 = mysqli_query($conn,$query2); 
+	   $query2 = "update students set fname= '$fname2',lname='$lname2', department='$department',departmentlocation='$DepartmentLocation',contact='$contact1',email='$Email',married='$marry',password='$pwd',band='$band',mealfacility='$MealFacility',cabfacility='$CabFacility',current_address='$address',pincode='$PinCode' where id=$id " ;
+		
+		$result2 = mysqli_query($conn,$query2); 
 		 if($result2)
 		 {
 		 echo "<script>alert(data updated successfully)</script>";

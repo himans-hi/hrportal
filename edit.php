@@ -412,8 +412,6 @@ if(($_COOKIE['type']=="auth"))
 	<div>
 	<div class="main" style="width:98%; margin-left:16px;">
 		
-         
-		 
             <div class="main">
             <div class="top_bar">
 			                      <h2>

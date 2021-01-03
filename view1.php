@@ -7,6 +7,7 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
 if(($_COOKIE['type']=="guest"))
 {	
 ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -39,11 +40,9 @@ if(($_COOKIE['type']=="guest"))
             color: #D8D4D8;
             font-size: 24px;
         }
-		
-	
+			
     </style>
 
-  
 </head>
 <body>
     
