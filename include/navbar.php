@@ -5,7 +5,8 @@
       <nav class="navbar navbar-default" id="header">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-        <a class="navbar-brand" href="front.php"><img src="images/digispice_logo.png" /></a> </div>
+        <a class="navbar-brand" href="front.php"><!--<img src="images/digispice_logo.png" /> --><h4>CRUD PORTAL</h4></a>  
+		</div>
         
            
       <div id="navbar" class="navbar-collapse collapse main_menu">
@@ -14,19 +15,23 @@
           <li><a href="#">Employee</a>
           	<div class="sub_menu">
             	<ul>
-                
-                <li><a href="index1.php">Employee</a></li>
+                <?php
+				if(($_COOKIE['type']=="auth"))
+					{
+				?>
+                <li><a href="index1.php">Create Authentication</a></li>
 				<?php
-                if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="hod"))
+					}
+                if(($_COOKIE['type']=="auth"))
 					{
                 ?>
-                <li><a href="view.php">View Employee List</a></li>
+                <li><a href="view.php">Read Authentication</a></li>
                 <?php
 					}
 			     else
 					{
 				?>
-                 <li><a href="user_profile.php">View Employee Profile</a></li>
+                 <li><a href="view1.php">View Authentication</a></li>
                 <?php
 					}
 					?>
@@ -35,12 +40,12 @@
             </div>
           </li>
 		  <?php
-		  if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="hod"))
-     {
+//		  if(($_COOKIE['type']=="guest"))
+ //    {
 
 
 	?>
-          <li><a href="#">HR</a>
+       <!--   <li><a href="#">HR</a>
 			<div class="sub_menu">
 				<ul>
 				<li><a href="createevent.php">Create Event</a></li>
@@ -49,9 +54,9 @@
 				
 				</ul>
 			</div>
-          </li>
+          </li>   -->
 	
-          <li><a href="#">Admin</a>
+  <!--        <li><a href="#">Admin</a>
 		
 		  </li>
          
@@ -60,9 +65,9 @@
 
             <li> <a href="#">H.O.D</a>
 		
-		  </li>
+		  </li>   -->
 		  <?php
-}
+//  }
 ?>
           <li><a href="logout.php">Logout</a>
 		

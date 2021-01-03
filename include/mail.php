@@ -13,16 +13,18 @@
        $DepartmentLocation=$_POST['DeptLoc'];
        $contact=$_POST['Contact'];
       $Email=$_POST['email'];
+	  $marry=$_POST['marry'];
 	//  $subject=$_POST['subject'];
 	  $pwd=$_POST['pwd'];
-      $AccountManager=$_POST['manager']; 
-      $Grade=$_POST['grade'];
-      $payscale=$_POST['PayScale'];
-      $Salary=$_POST['tds'];
+      // $AccountManager=$_POST['manager']; 
+      // $Grade=$_POST['grade'];
+      // $payscale=$_POST['PayScale'];
+      // $Salary=$_POST['tds'];
      $MealFacility=$_POST['mealfacility'];
      $CabFacility=$_POST['cabfacility'];
-     $City=$_POST['city'];
-     $PinCode=$_POST['pincode'];
+	 $address=$_POST['address'];
+       $PinCode=$_POST['pincode'];
+  //   $City=$_POST['city'];
 	  $Status=$_POST['status'];
 	  
 
@@ -56,15 +58,15 @@ $message=
    </tr>
    <tr>
     <td width="30%">AccountManager</td>
-    <td width="70%">'.$_POST["manager"].'</td>
+    <td width="70%">'.$_POST["mealfacility"].'</td>
    </tr>
    <tr>
     <td width="30%">Salary</td>
-    <td width="70%">'.$_POST["tds"].'</td>
+    <td width="70%">'.$_POST["cabfacility"].'</td>
    </tr>
    <tr>
     <td width="30%">City</td>
-    <td width="70%">'.$_POST["city"].'</td>
+    <td width="70%">'.$_POST["address"].'</td>
    </tr>
     <tr>
     <td width="30%">Pincode</td>
@@ -113,7 +115,13 @@ $message=
 for($i=0; $i<count($_FILES['upload']['name']); $i++){
      $mail->addAttachment($_FILES['upload']['tmp_name'][$i], "uploaded/" .$_FILES['upload']['name'][$i]);
    }
-
+       // $mail->addAttachment($_FILES['upload']['tmp_name'], "uploaded/" .$_FILES['upload']['name']);
+	   // $mail->addAttachment($_FILES['upload1']['tmp_name'], "uploaded/" .$_FILES['upload1']['name']);
+	   // $mail->addAttachment($_FILES['upload2']['tmp_name'], "uploaded/" .$_FILES['upload2']['name']);
+	   // $mail->addAttachment($_FILES['upload3']['tmp_name'], "uploaded/" .$_FILES['upload3']['name']);
+	   
+	   
+	   
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML

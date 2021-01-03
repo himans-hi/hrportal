@@ -4,7 +4,7 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
  {
 	 header("Location:login2.php");
 }
-  
+//  print_r($_COOKIE);
 ?>
 
 
@@ -392,7 +392,7 @@ include('include/navbar.php');
               <li><a href="https://kmp.digispice.com/videos/webinar_6th_June_2020.mp4" target="_blank"><img alt="OneDiGiSPICE" src="images/digispice-KMP-Banner04_6th_June_2020.jpg"/></a></li>
               <li><img alt="DiGiSPICE" src="images/digispice-KMP-Banner02.jpg" /></li>
               <li><img alt="DiGiSPICE" src="images/digispice-KMP-Banner03.jpg" /></li>
-              <li><img alt="DiGiSPICE" src="images/digispice-KMP-Banner01.jpg" /></li>
+              <li><img alt="DiGiSPICE" src="images/digispice-KMP-Banner01.jpg" /></li> 
             </ul>
           </div>
         </section>
@@ -492,8 +492,8 @@ include('include/navbar.php');
                             </div>
                         </div>
                         
-                    </div>
-                    <div class="icon_slider">
+                    </div> 
+                   <div class="icon_slider">
                         <ul class="slides2">
                                 <li>
                                     <div class="box">
@@ -624,24 +624,14 @@ include('include/navbar.php');
                                 
                             </div>
                             <div class="pr"></div>
-                    </div>
+                    </div>  
                 </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="right_bar">
                     
 
                     <div id="pval" style="display:none">1</div>
-                    
-            <!--        <div class="social">
-                                    <ul>
-                                        <li><a href="http://www.facebook.com/SpiceDigital" target="_blank" class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="https://twitter.com/spicedigital4u" target="_blank" class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="http://www.linkedin.com/company/spice-digital" target="_blank" class="google"><i class="fa fa-linkedin"></i></a></li>
-                                    </ul>
-                                </div>  -->
-                    
-                    
-                            
+                                     
                         <div id="calendar"></div>
                     <div class="side_block">
                 

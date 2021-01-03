@@ -1,7 +1,4 @@
 <?php
-// print_r($_COOKIE);
-//include('validate.php');
-//  print_r($_COOKIE);
 if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
 {
 	header("Location:login2.php");
@@ -10,7 +7,7 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
 ?>
 
 <?php
-  include('include/mail.php'); 
+ 
   error_reporting(0);
  
   ini_set('display_error', 'All');
@@ -20,47 +17,28 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
   $i=0;
   if(isset($_POST['submit']))
   {
+	  $errors     = array();
+    $maxsize    = 1097152;
+	  
+	  
        $fname1=$_POST['fname'];
        $lname1=$_POST['lname'];
        $department=$_POST['Dept'];
        $DepartmentLocation=$_POST['DeptLoc'];
+	   $location=$_POST['location'];
        $contact=$_POST['Contact'];
        $Email=$_POST['email'];
-       $subject=$_POST['subject'];
+	   $marry=$_POST['marry'];
 	   $pwd=$_POST['pwd'];
-       $AccountManager=$_POST['manager']; 
-       $Grade=$_POST['grade'];
-       $payscale=$_POST['PayScale'];
-       $Salary=$_POST['tds'];
+       $band=$_POST['band'];
        $MealFacility=$_POST['mealfacility'];
        $CabFacility=$_POST['cabfacility'];
-       $City=$_POST['city'];
+       $address=$_POST['address'];
        $PinCode=$_POST['pincode'];
-	   $name_array=$_FILES['upload']['name'];
-	   $tmpFilePath = $_FILES['upload']['tmp_name'];
-     //  $filepath=$_SERVER['DOCUMENT_ROOT']."/var/www/html/CRM/CRM_1/uploaded/" .$name_array[$i];
-	  
-	  for($i=0; $i<count($_FILES['upload']['name']); $i++) {
-//	  if(move_uploaded_file($tmpFilePath[$i],"uploaded/".$name_array[$i])){
-      if(move_uploaded_file($tmpFilePath[$i],$_SERVER['DOCUMENT_ROOT'].'/hr/employee/uploaded/'.$name_array[$i])){
-		  $msg=$name_array[$i]." upload is complete<br>";
-		  // echo $name_array[0];
-		  // echo $name_array[1];
-		  // echo $name_array[2];
-		  // echo $name_array[3];
-	  }  else{
-		  $msg = "move_uploaded_file function failed for ".$name_array[$i]."<br>";
-	  }
-	  }
-	 
-	 $Status=$_POST['status'];
-	  
-  //   $Salary= $Salary * 10 / 100;
-	
-	
-	
-	
-	 $checkvalues = "select * from students where Contact='".$contact."' and email='".$Email."' and password='".$pwd."'"; 
+	   
+
+   
+ 	$checkvalues = "select * from students where Contact='".$contact."' and email='".$Email."' and password='".$pwd."'"; 
 	 	       
 	$sql = mysqli_query($conn, $checkvalues);
 
@@ -69,21 +47,24 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
 	if($count > 0){
 		echo "User already exists";
 		header("Location:index1.php");
-	}else{			
- $insertsql="insert into students(Fname,Lname,Department,DepartmentLocation,contact,Email,subject,password,AccountManager,Grade,PayScale,Salary,MealFacility,CabFacility,City,PinCode,aadharnumber,pannumber,ssc,hsc,Status) values('$fname1','$lname1','$department','$DepartmentLocation','$contact','$Email','$subject','$pwd','$AccountManager','$Grade','$payscale','$Salary','$MealFacility','$CabFacility','$City','$PinCode','$name_array[0]','$name_array[1]','$name_array[2]','$name_array[3]','$Status')";
+	}else{
+
+  $insertsql="insert into students(Fname,Lname,Department,DepartmentLocation,contact,Email,married,password,band,MealFacility,CabFacility,current_address,PinCode) values('$fname1','$lname1','$department','$DepartmentLocation','$contact','$Email','$marry','$pwd','$band','$MealFacility','$CabFacility','$address','$PinCode')";
 	 
 		  $returnval = mysqli_query($conn, $insertsql);
 		  if($returnval){
-			  $message = '<div class="alert alert-success">Application Successfully Submitted</div>';
-		//	 echo "successfully insert";	 
-		//	 header('Location:submit.php');
-		       
-		  }else { 
-		      $message = '<div class="alert alert-danger">There is an Error</div>';
-		//	  echo "error in insert";
+			 $message = '<div class="alert alert-success">Application Successfully Submitted</div>';		       
 		  }
-		}
-	}
+	 
+	  else { 
+		      $message = '<div class="alert alert-danger">There is an Error</div>';
+		  }
+		  
+		    
+	  }	 
+
+}	
+	  		  
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -207,7 +188,7 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
     }
 </style>
 
-<script type='text/javascript'>
+<!--<script type='text/javascript'>
     $(document).ready(function () {
         var value = $('#header_lbl_atdstatus').text();
         var myID = $('.right_bar .user .user_image img').attr('id');
@@ -220,7 +201,7 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
         }
 
     });
-</script>
+</script> -->
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
@@ -234,18 +215,15 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
     var DepartmentLocation = document.forms["RegForm"]["DeptLoc"];  
     var contact =  document.forms["RegForm"]["Contact"];  
 	var Email = document.forms["RegForm"]["email"];
-    var AccountManager = document.forms["RegForm"]["manager"];  
-	var Grade = document.forms["RegForm"]["grade"];  
-    var payscale = document.forms["RegForm"]["PayScale"];  
-	var Salary = document.forms["RegForm"]["tds"];  
+	var Marry = document.forms["RegForm"]["marry"]; 
+    var Band = document.forms["RegForm"]["band"];
     var MealFacility = document.forms["RegForm"]["mealfacility"];  
 	var CabFacility = document.forms["RegForm"]["cabfacility"];   
-	var City = document.forms["RegForm"]["city"];  
-    var Pincode = document.forms["RegForm"]["pincode"];  
-	var status = document.forms["RegForm"]["status"];
-	var file = document.forms["RegForm"]["upload[]"];
+    var address = document.forms["RegForm"]["address"]; 
+    var Pincode = document.forms["RegForm"]["pincode"];
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-   
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+
    
     if (fname1.value == "")                                  
     { 
@@ -342,49 +320,26 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
 	Email.focus();
 	return false;
 	}
-
-      
-   if (AccountManager.value == "")                                   
+    
+	if (Marry.value == "")                                    
     { 
-        window.alert("Please enter your account manager."); 
-        AccountManager.focus(); 
-       return false; 
-   }
-      
-   if (Grade.value == "")                                   
-    { 
-        window.alert("Please enter your grade."); 
-        Grade.focus(); 
-       return false; 
+	var formValid=false;
+	var i=0;
+	while(!formValid && i< Marry.length)
+	{
+	if (Marry[i].checked)formValid=true;
+	i++;
+	}
+        if(!formValid)alert("please enter martial status!");
+       return formValid;			
    }
    
-	   
-   if (payscale.value == "")                                   
-    { 
-        window.alert("Please enter your payScale."); 
-        payscale.focus(); 
+    if(Band.value == "")
+	{
+		 window.alert("Please enter your salary band."); 
+        Band.focus(); 
        return false; 
    }
-   
-   if (Salary.value == "")                                   
-    { 
-        window.alert("Please enter your Salary."); 
-        Salary.focus(); 
-       return false; 
-   }
-   if(isNaN(Salary.value))                                   
-    { 
-        window.alert("Please enter only numbers."); 
-        Salary.focus(); 
-       return false; 
-   }
-   if(Salary.value < 1000)
-   {
-	   window.alert("salary must be greater than 1000");
-	   Salary.focus();
-	   return false;
-   }
-
    
    if (MealFacility.value == "")                                    
     { 
@@ -413,19 +368,12 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
    	  
    }
 
- if (City.value == "")                                   
+    if (address.value == "")                                
     { 
-        window.alert("Please enter your City."); 
-        City.focus(); 
+        window.alert("Please enter your address."); 
+        address.focus(); 
        return false; 
    }
-   
-   if(!isNaN(City.value))
-     {
-     window.alert("Please Enter Only Characters");
-     City.focus();
-     return false;
-    }
 	
     if (Pincode.value == "")                                   
     { 
@@ -447,63 +395,20 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
         Pincode.focus(); 
        return false; 
     }
-	
-//   if(file.value == "")
-//   {
-   for(var i=0; i<file.length;)
-   {
-	   if(file[0].value == "")
-	   {
-	//	   alert(file[i].value);
-		   window.alert("please upload aadhar image");
-		   file.value == "";
-		   return false;
-	   }
-	   i++;
-	   if(file[1].value == "")
-		   {
-	//	   alert(file[i].value);
-		   window.alert("please upload pancard image");
-		   file.value == "";
-		   return false;
-	   }
-	   i++;
-	   if(file[2].value == "")
-	   {
-	//	   alert(file[i].value);
-		   window.alert("please upload 10th marksheet image");
-		   file.value == "";
-		   return false;
-	   }
-	   i++;
-	   if(file[3].value == "")
- 	   {
-	//	   alert(file[i].value);
-		   window.alert("please upload 12th marksheet image");
-		   file.value == "";
-		   return false;
-	   }
-   }
-// }
-   
-   if (status.value == "")                                   
-    { 
-        window.alert("Please enter your status."); 
-        status.focus(); 
-       return false; 
-    }
-	
+		
     return true; 
   }
   </script>
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script>
-   $(document).ready(function(){  
+  
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+   $(document).ready(function(){   
    $('#pwd').blur(function(){
 	  
      var pwd = $(this).val();
-//	 alert(pwd);
+
 	
      $.ajax({
       url:'check2.php',
@@ -513,30 +418,38 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
       {
        if(data != '0')
        {
-		//   alert('h1');
-		   // $('#fname').removeClass('<span class="text-danger">already exist</span>');
-		   // $(this).parent().addClass('<span class="text-danger">already exist</span>');
         $('#password').html('<span class="text-danger">already exist create different  password</span>');
         $('#submit').attr("disabled", true);
        }
        else
        {
-		//   alert('h3');
-	//	   $('#fname').removeClass('<span class="text-danger">already exist</span>');
         $('#password').html('<span class="text-success">Available</span>');
         $('#submit').attr("disabled", false);
        }
       }
      })
    });
- });
-  </script>
+   
+ 
+        var value = $('#header_lbl_atdstatus').text();
+        var myID = $('.right_bar .user .user_image img').attr('id');
+        if (value == 'Absent') {
+            $("#divPic").addClass("user_image user_imageSmall");
+        }
+        else {
+            $("#divPic").addClass("user_image user_imagePresentSmall");
+
+        }
+
+	});
+  
+</script>
 </head>
 <body>
         <?php
 		include('include/navbar.php');
 		?>
-<!--    <form name="form1" method="post" action="./VisitingCardRequest" onsubmit="javascript:return WebForm_OnSubmit();" id="form1"> -->
+
 	<form name="RegForm" onsubmit="return REG_FORM()" method="post" enctype="multipart/form-data">
 	<div>
 	<div class="main" style="width:98%; margin-left:16px;">
@@ -546,12 +459,14 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
             <div class="main">
             <div class="top_bar">
 			                      <h2>
-                                        Employee Registration Form</h2>
+                                        Create Authentication Form</h2>
                                 </div>
-								<?php
+			<?php
 			echo $message;
 			?>
-              
+              <div style = "position:relative; left:1100px; top:2px;">
+        </div>
+			  
                    <table cellpadding="2" cellspacing="2" class="form_table" width="100%">                                   
                         <tr height="10"></tr>
                         <tr>
@@ -577,35 +492,28 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
                             <td align="left">
                                 <select name="Dept" id="dept" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
 									<option value="">Select Department</option>
-									<option value="admin">admin</option>
-									<option value="account">account</option>
-									<option value="finance">finance</option>
-									<option value="hr">hr</option>
-									<option value="technical">technical</option>
-									<option value="sales">sales</option>
+									<option value="Enterprise&Solutions">Enterprise&Solutions</option>
+									<option value="Finance&Accounts">Finance&Accounts</option>
+									<option value="HR&Administration">HR&Administration</option>		
                               	</select>
                             </td>                            
                         </tr>
 						<tr>
                             <td align="left" width="30%">
-                                <span class="text_big_team">DepartmentLocation</span>
+                                <span class="text_big_team">Location</span>
                             </td>
                             <td align="left">
-                                <select name="DeptLoc" id="DeptLoc" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
+                                <select name="DeptLoc" id="DeptLoc" onchange='CheckColors(this.value);' class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
 									<option value="">Select Department Location</option>
 	<option value="Bangalore">Bangalore</option>
 	<option value="Bangladesh">Bangladesh</option>
-	<option value="Kolkata">Kolkata</option>
-	<option value="punjab">punjab</option>
-	<option value="Mohali">Mohali</option>
-	<option value="Mumbai">Mumbai</option>
-	<option value="Noida">Noida</option>
-	<option value="delhi">delhi</option>
-	<option value="uttar pradesh">uttar pradesh</option>
-	<option value="madhya pradesh">madhya pradesh</option>
+	<option value="Bihar">Bihar</option>
+	<option value="Chennai">Chennai</option>
+	<option value="Dhaka">Dhaka</option>
                               	</select>
                             </td>                               
                         </tr>
+												
 						<tr>
                             <td align="left" width="30%">
                                 <span class="text_big_team">Contact</span>
@@ -625,15 +533,20 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
                             </td>
                         </tr>
 						
+			
+						
 						<tr>
                             <td align="left">
-                                <span class="text_big_team">Subject</span>
+                                <span class="text_big_team">Married</span>
                             </td>
                             <td align="left">
-                                <input name="subject" type="text" id="subject" class="form-control" placeholder="enter subject" style="width:199px;" />
+                                <input type="radio" name="marry" id="marry" value="single"/>Single&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="marry" id="marry" value="married" onchange='Check(this.value);'/>Married
                             </td>
-                        </tr>      
+                        </tr>
 						
+					
+			
                         <tr>
                             <td align="left">
                                 <span class="text_big_team">Password</span>
@@ -643,62 +556,24 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
                                 <span id="password"></span>
                             </td>
                         </tr>
+						
                        
-                            <tr>
+	               <tr>
                             <td align="left" width="30%">
-                                <span class="text_big_team">Account Manager</span>
+                                <span class="text_big_team">Band</span>
                             </td>
                             <td align="left">
-                                <select name="manager" id="manager" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
+                                <select name="band" id="band" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
 									<option value="">Select</option>
-	<option value="Himanshi Gupta">Himanshi Gupta</option>
-	<option value="Himanshu Gupta">Himanshu Gupta</option>
-	<option value="Anamika Parashar">Anamika Parashar</option>
-	<option value="Nandini Patel">Nandini Patel</option>
-	<option value="Rajni Rajput">Rajni Rajput</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
 	</select>
 	</td>
-	</tr>
-	
-                        <tr>
-                            <td align="left" width="30%">
-                                <span class="text_big_team">Grade</span>
-                            </td>
-                            <td align="left">
-                                <select name="grade" id="grade" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
-									<option value="">Select</option>
-	<option value="A">A</option>
-	<option value="B">B</option>
-	<option value="C">C</option>
-	<option value="D">D</option>
-	<option value="E">E</option>
-	</select>
-	</td>
-    </tr>
-						
-                        <tr>
-                            <td align="left" width="30%">
-                                <span class="text_big_team">PayScale</span>
-                            </td>
-                            <td align="left">
-                                <select name="PayScale" id="PayScale" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
-									<option value="">Select</option>
-	<option >1000-10000</option>
-<option >10000-50000</option>
-<option >50000-100000</option>
-<option >100000</option>
-	</select>
-	</td>
-                        </tr>
-						
-                        <tr>
-                            <td align="left">
-                                <span class="text_big_team">Salary</span>
-                            </td>
-                            <td align="left">
-                                <input name="tds" type="text" id="tds" class="form-control" placeholder="enter salary" style="width:199px;" />
-                            </td>
-                        </tr>
+    </tr>   
+	               
 						
 						<tr>
                             <td align="left">
@@ -719,15 +594,17 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
                                 <input type="radio" name="cabfacility" id="cabfacility" value="no" />no
                             </td>
                         </tr>
-						
+											
 						<tr>
                             <td align="left">
-                                <span class="text_big_team">City</span>
+                                <span class="text_big_team">Current Address</span>
                             </td>
                             <td align="left">
-                                <input name="city" type="text" id="city" class="form-control" placeholder="enter city" style="width:199px;" />
+                                <textarea name="address" rows="6" type="text" id="address" class="form-control" placeholder="enter address" style="width:199px;" /></textarea>
                             </td>
-                        </tr>
+                        </tr>  
+						
+						
 						
 						<tr>
                             <td align="left">
@@ -737,63 +614,12 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
                                 <input name="pincode" type="text" id="pincode" class="form-control" placeholder="enter pincode" style="width:199px;" />
                             </td>
                         </tr>
-						
-						<tr>
-                            <td align="left">
-                                <span class="text_big_team">Aadhar Number</span>
-                            </td>
-                            <td align="left">
-                                <input type="file" name="upload[]" accept=".png,.jpg,.jpeg"  placeholder="enter AadharNumber">
-                            </td>
-                        </tr>
-						
-						<tr>
-                            <td align="left">
-                                <span class="text_big_team">Pan Number</span>
-                            </td>
-                            <td align="left">
-                                <input type="file" name="upload[]" accept=".png,.jpg,.jpeg" placeholder="enter PanNumber">
-                            </td>
-                        </tr>
-						
-						<tr>
-                            <td align="left">
-                                <span class="text_big_team">10th Marksheet</span>
-                            </td>
-                            <td align="left">
-                                <input type="file" name="upload[]" accept=".png,.jpg,.jpeg"  placeholder="enter 10th marksheet">
-                            </td>
-                        </tr>
-						
-						<tr>
-                            <td align="left">
-                                <span class="text_big_team">12th Marksheet</span>
-                            </td>
-                            <td align="left">
-                                <input type="file" name="upload[]" accept=".png,.jpg,.jpeg"  placeholder="enter 10th marksheet">
-                            </td>
-                        </tr>
-						
-                        <tr>
-                            <td align="left">
-                                <span class="text_big_team">Status</span>
-                            </td>
-                            <td align="left">
-                               <select name="status" id="status" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
-									<option value="">Select</option>
-										<option >active</option>
-									<option >update</option>
-									<option >pending</option>
-										</select>
-                            </td>
-                        </tr>
-                        
-                        
+						                        
                         <tr>
                             <td></td>
                             <td align="left">
                                 <a href="logout.php"><button type="button" class="btn btn-secondary">close</button></a>&nbsp&nbsp
-  <button type="submit" name="submit" id="submit" value="send" class="btn btn-primary">Save</button>                            
+  <button type="submit" name="submit" id="submit" value="send" class="btn btn-primary">Save</button>                        
                             </td>
                         </tr>
 					
@@ -820,9 +646,6 @@ if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
                     </div>
                     </div>
                     </div>
-                 <!--   </div>
-                    
-    </div>        -->
 </form>
 </body>
 </html>

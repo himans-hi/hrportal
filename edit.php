@@ -1,17 +1,16 @@
 <?php
- // print_r($_COOKIE);
-//  include('validate.php');
+
 if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
 {
 	header("Location:login2.php");
 }
- 
-if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="hod"))
+if(($_COOKIE['type']=="auth"))
 {	
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <style type="text/css">
 .form_table td {
@@ -130,7 +129,7 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
     }
 </style>
 
-<script type='text/javascript'>
+<!-- <script type='text/javascript'>
     $(document).ready(function () {
         var value = $('#header_lbl_atdstatus').text();
         var myID = $('.right_bar .user .user_image img').attr('id');
@@ -143,7 +142,7 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
         }
 
     });
-</script>
+</script> -->
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
@@ -157,18 +156,19 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
     var DepartmentLocation = document.forms["RegForm"]["DeptLoc"];  
     var contact =  document.forms["RegForm"]["Contact"];  
 	var Email = document.forms["RegForm"]["email"];
-    var AccountManager = document.forms["RegForm"]["manager"];  
-	var Grade = document.forms["RegForm"]["grade"];  
-    var payscale = document.forms["RegForm"]["PayScale"];  
-	var Salary = document.forms["RegForm"]["tds"];  
+	var Marry = document.forms["RegForm"]["marry"];
+    var Band = document.forms["RegForm"]["band"];
     var MealFacility = document.forms["RegForm"]["mealfacility"];  
 	var CabFacility = document.forms["RegForm"]["cabfacility"];   
-	var City = document.forms["RegForm"]["city"];  
-    var Pincode = document.forms["RegForm"]["pincode"];  
-	var status = document.forms["RegForm"]["status"];
-	var file = document.forms["RegForm"]["upload[]"];
+//	var City = document.forms["RegForm"]["city"]; 
+    var address = document.forms["RegForm"]["address"]; 
+    var Pincode = document.forms["RegForm"]["pincode"];
+//	var file = document.forms["RegForm"]["upload[]"];
+//	var work_status = document.forms["RegForm"]["work_status"]; 	
+//	var status = document.forms["RegForm"]["status"];
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-   
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
    
     if (fname1.value == "")                                  
     { 
@@ -265,42 +265,27 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
 	Email.focus();
 	return false;
 	}
-
-      
-   if (AccountManager.value == "")                                   
+    
+	if (Marry.value == "")                                    
     { 
-        window.alert("Please enter your account manager."); 
-        AccountManager.focus(); 
-       return false; 
+	var formValid=false;
+	var i=0;
+	while(!formValid && i< Marry.length)
+	{
+	if (Marry[i].checked)formValid=true;
+	i++;
+	}
+        if(!formValid)alert("please enter martial status!");
+       return formValid;			
    }
-      
-   if (Grade.value == "")                                   
-    { 
-        window.alert("Please enter your grade."); 
-        Grade.focus(); 
-       return false; 
-   }
-  
-   if (Salary.value == "")                                   
-    { 
-        window.alert("Please enter your Salary."); 
-        Salary.focus(); 
-       return false; 
-   }
-   if(isNaN(Salary.value))                                   
-    { 
-        window.alert("Please enter only numbers."); 
-        Salary.focus(); 
-       return false; 
-   }
-   if(Salary.value < 1000)
-   {
-	   window.alert("salary must be greater than 1000");
-	   Salary.focus();
-	   return false;
-   }
-
    
+    if(Band.value == "")
+	{
+		 window.alert("Please enter your salary band."); 
+        Band.focus(); 
+       return false; 
+   }
+     
    if (MealFacility.value == "")                                    
     { 
 	var formValid=false;
@@ -328,19 +313,12 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
    	  
    }
 
- if (City.value == "")                                   
+    if (address.value == "")                                
     { 
-        window.alert("Please enter your City."); 
-        City.focus(); 
+        window.alert("Please enter your address."); 
+        address.focus(); 
        return false; 
    }
-   
-   if(!isNaN(City.value))
-     {
-     window.alert("Please Enter Only Characters");
-     City.focus();
-     return false;
-    }
 	
     if (Pincode.value == "")                                   
     { 
@@ -362,59 +340,13 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
         Pincode.focus(); 
        return false; 
     }
-	
-//   if(file.value == "")
-//   {
-   // for(var i=0; i<file.length;)
-   // {
-	   // if(file[0].value == "")
-	   // {
-	// //	   alert(file[i].value);
-		   // window.alert("please upload aadhar image");
-		   // file.value == "";
-		   // return false;
-	   // }
-	   // i++;
-	   // if(file[1].value == "")
-		   // {
-	// //	   alert(file[i].value);
-		   // window.alert("please upload pancard image");
-		   // file.value == "";
-		   // return false;
-	   // }
-	   // i++;
-	   // if(file[2].value == "")
-	   // {
-	// //	   alert(file[i].value);
-		   // window.alert("please upload 10th marksheet image");
-		   // file.value == "";
-		   // return false;
-	   // }
-	   // i++;
-	   // if(file[3].value == "")
- 	   // {
-	// //	   alert(file[i].value);
-		   // window.alert("please upload 12th marksheet image");
-		   // file.value == "";
-		   // return false;
-	   // }
-   // }
-// }
-   
-   if (status.value == "")                                   
-    { 
-        window.alert("Please enter your status."); 
-        status.focus(); 
-       return false; 
-    }
-	
     return true; 
   }
   </script>
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script>
-   $(document).ready(function(){  
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+   $(document).ready(function(){   
    $('#pwd').blur(function(){
 	  
      var pwd = $(this).val();
@@ -444,7 +376,18 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
       }
      })
    });
- });
+   		
+        var value = $('#header_lbl_atdstatus').text();
+        var myID = $('.right_bar .user .user_image img').attr('id');
+        if (value == 'Absent') {
+            $("#divPic").addClass("user_image user_imageSmall");
+        }
+        else {
+            $("#divPic").addClass("user_image user_imagePresentSmall");
+
+        }
+
+	});
   </script>
 </head>
 <body> 
@@ -474,7 +417,7 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
             <div class="main">
             <div class="top_bar">
 			                      <h2>
-                                        Edit Employee Form</h2>
+                                        Edit Authentication Form</h2>
                                 </div>
               
                    <table cellpadding="2" cellspacing="2" class="form_table" width="100%">                                   
@@ -484,7 +427,7 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
                                 <span class="text_big_team">First Name</span>
                             </td>
                             <td align="left">
-                                <input value="<?php echo $row['fname'] ?>" name="fname" type="text" class="form-control" placeholder="enter first name" style="width:199px;" />
+                                <input value="<?php echo $row['Fname'] ?>" name="fname" type="text" class="form-control" placeholder="enter first name" style="width:199px;" />
                             </td>                            
                         </tr>
 						<tr>
@@ -492,7 +435,7 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
                                 <span class="text_big_team">Last Name</span>
                             </td>
                             <td align="left">
-                                <input value="<?php echo $row['lname'] ?>" name="lname" type="text" class="form-control" placeholder="enter last name" style="width:199px;" />
+                                <input value="<?php echo $row['Lname'] ?>" name="lname" type="text" class="form-control" placeholder="enter last name" style="width:199px;" />
                             </td>                            
                         </tr>
 						<tr>
@@ -502,54 +445,32 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
                             <td align="left">
                                 <select name="Dept" id="dept" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
 									<option value="">Select Department</option>
-									<option value="admin"
+									
+									<option value="Enterprise&Solutions"
 									<?php
-if($row['department']=='admin')
+if($row['Department']=='Enterprise&Solutions')
 {
 	echo "selected";
 }
 ?>
->admin</option>
-									<option value="account"
+>Enterprise&Solutions</option>
+									<option value="Finance&Accounts"
 									<?php
-if($row['department']=='account')
+if($row['Department']=='Finance&Accounts')
 {
 	echo "selected";
 }
 ?>
-									>account</option>
-									<option value="finance"
+>Finance&Accounts</option>
+									<option value="HR&Administration"
 									<?php
-if($row['department']=='finance')
+if($row['Department']=='HR&Administration')
 {
 	echo "selected";
 }
 ?>
-									>finance</option>
-									<option value="hr"
-									<?php
-if($row['department']=='hr')
-{
-	echo "selected";
-}
-?>
-									>hr</option>
-									<option value="technical"
-									<?php
-if($row['department']=='technical')
-{
-	echo "selected";
-}
-?>
-									>technical</option>
-									<option value="sales"
-									<?php
-if($row['department']=='sales')
-{
-	echo "selected";
-}
-?>
-									>sales</option>
+>HR&Administration</option>
+									
                               	</select>
                             </td>                            
                         </tr>
@@ -558,11 +479,11 @@ if($row['department']=='sales')
                                 <span class="text_big_team">DepartmentLocation</span>
                             </td>
                             <td align="left">
-                                <select name="DeptLoc" id="DeptLoc" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
-									<option value="">Select Department Location</option>
+                                <select name="DeptLoc" id="DeptLoc" onchange='CheckColors(this.value);' class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
+									<option value="">Select Department Location</option>	
 	<option value="Bangalore"
 	<?php
-if($row['departmentlocation']=='Banglore')
+if($row['DepartmentLocation']=='Banglore')
 {
 	echo "selected";
 }
@@ -570,78 +491,40 @@ if($row['departmentlocation']=='Banglore')
 	>Bangalore</option>
 	<option value="Bangladesh"
 	<?php
-if($row['departmentlocation']=='Bangladesh')
+if($row['DepartmentLocation']=='Bangladesh')
 {
 	echo "selected";
 }
 ?>
 	>Bangladesh</option>
-	<option value="Kolkata"
+	<option value="Bihar"
 	<?php
-if($row['departmentlocation']=='Kolkata')
+if($row['DepartmentLocation']=='Bihar')
 {
 	echo "selected";
 }
 ?>
-	>Kolkata</option>
-	<option value="punjab"
+	>Bihar</option>
+	<option value="Chennai"
 	<?php
-if($row['departmentlocation']=='punjab')
+if($row['DepartmentLocation']=='Chennai')
 {
 	echo "selected";
 }
 ?>
-	>punjab</option>
-	<option value="Mohali"
+	>Chennai</option>
+	<option value="Dhaka"
 	<?php
-if($row['departmentlocation']=='Mohali')
+if($row['DepartmentLocation']=='Dhaka')
 {
 	echo "selected";
 }
 ?>
-	>Mohali</option>
-	<option value="Mumbai"
-	<?php
-if($row['departmentlocation']=='Mumbai')
-{
-	echo "selected";
-}
-?>
-	>Mumbai</option>
-	<option value="Noida"
-	<?php
-if($row['departmentlocation']=='Noida')
-{
-	echo "selected";
-}
-?>
-	>Noida</option>
-	<option value="delhi"
-	<?php
-if($row['departmentlocation']=='delhi')
-{
-	echo "selected";
-}
-?>
-	>delhi</option>
-	<option value="uttar pradesh"
-	<?php
-if($row['departmentlocation']=='uttar pradesh')
-{
-	echo "selected";
-}
-?>>uttar pradesh</option>
-	<option value="madhya pradesh"
-	<?php
-if($row['departmentlocation']=='madhya pradesh')
-{
-	echo "selected";
-}
-?>
-	>madhya pradesh</option>
-                              	</select>
+	>Dhaka</option>
+</select>
                             </td>                               
                         </tr>
+						
 						<tr>
                             <td align="left" width="30%">
                                 <span class="text_big_team">Contact</span>
@@ -660,179 +543,93 @@ if($row['departmentlocation']=='madhya pradesh')
 								<span id="Email"></span>
                             </td>
                         </tr>
-						
+										
 						<tr>
                             <td align="left">
-                                <span class="text_big_team">Subject</span>
+                                <span class="text_big_team">Married</span>
                             </td>
                             <td align="left">
-                                <input value="<?php echo $row['subject'] ?>" name="subject" type="text" id="subject" class="form-control" placeholder="enter subject" style="width:199px;" />
+                                <input type="radio" name="marry" id="marry" value="single"
+								 <?php
+	if($row['married']=='single')
+	{
+		echo "checked";
+	}
+	?>
+                                  />Single&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="marry" id="marry" value="married" onchange='Check(this.value);'
+								<?php
+	if($row['married']=='married')
+	{
+		echo "checked";
+	}
+	?> 
+	/>Married
                             </td>
-                        </tr>     
+                        </tr>
+						
+					
 						
                         <tr>
                             <td align="left">
                                 <span class="text_big_team">Password</span>
                             </td>
                             <td align="left">
-                                <input value="<?php echo $row['password'] ?>" name="pwd" type="text" id="pwd" class="form-control" placeholder="enter password" style="width:199px;" />
+                                <input value="<?php echo $row['PASSWORD'] ?>" name="pwd" type="text" id="pwd" class="form-control" placeholder="enter password" style="width:199px;" />
                                 <span id="password"></span>
                             </td>
                         </tr>
-                       
-                            <tr>
-                            <td align="left" width="30%">
-                                <span class="text_big_team">Account Manager</span>
-                            </td>
-                            <td align="left">
-                                <select name="manager" id="manager" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
-									<option value="">Select</option>
-	<option value="Himanshi Gupta"
-	<?php
-if($row["accountmanager"]=='Himanshi gupta')
-{
-	echo "selected";
-}
-?>
-	>Himanshi Gupta</option>
-	<option value="Himanshu Gupta"
-	<?php
-if($row["accountmanager"]=='Himanshu gupta')
-{
-	echo "selected";
-}
-?>
-	>Himanshu Gupta</option>
-	<option value="Anamika Parashar"
-	<?php
-if($row["accountmanager"]=='Anamika Parashar')
-{
-	echo "selected";
-}
-?>
-	>Anamika Parashar</option>
-	<option value="Nandini Patel"
-	<?php
-if($row["accountmanager"]=='Nandini Patel')
-{
-	echo "selected";
-}
-?>
-	>Nandini Patel</option>
-	<option value="Rajni Rajput"
-	<?php
-if($row["accountmanager"]=='Rajni Rajput')
-{
-	echo "selected";
-}
-?>
-	>Rajni Rajput</option>
-	</select>
-	</td>
-	</tr>
-	
-                        <tr>
-                            <td align="left" width="30%">
-                                <span class="text_big_team">Grade</span>
-                            </td>
-                            <td align="left">
-                                <select name="grade" id="grade" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
-									<option value="">Select</option>
-	<option value="A"
-	<?php
-if($row["grade"]=='A')
-{
-	echo "selected";
-}
-?>
-	>A</option>
-	<option value="B"
-	<?php
-if($row["grade"]=='B')
-{
-	echo "selected";
-}
-?>
-	>B</option>
-	<option value="C"
-	<?php
-if($row["grade"]=='C')
-{
-	echo "selected";
-}
-?>
-	>C</option>
-	<option value="D"
-	<?php
-if($row["grade"]=='D')
-{
-	echo "selected";
-}
-?>
->D</option>
-	<option value="E"
-	<?php
-if($row["grade"]=='E')
-{
-	echo "selected";
-}
-?>
-	>E</option>
-	</select>
-	</td>
-    </tr>
 						
-                        <tr>
+						<tr>
                             <td align="left" width="30%">
-                                <span class="text_big_team">PayScale</span>
+                                <span class="text_big_team">Band</span>
                             </td>
                             <td align="left">
-                                <select name="PayScale" id="PayScale" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
+                                <select name="band" id="band" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
 									<option value="">Select</option>
-	<option value="1000-10000"
+	<option value="1"
 	<?php
-if($row["payscale"]=='1000-10000')
+if($row['band']=='1')
 {
 	echo "selected";
 }
 ?>
-	>1000-10000</option>
-<option value="10000-50000"
-<?php
-if($row["payscale"]=='10000-50000')
+	>1</option>
+	<option value="2"
+	<?php
+if($row['band']=='2')
 {
 	echo "selected";
 }
 ?>
->10000-50000</option>
-<option value="50000-100000" 
-<?php
-if($row["payscale"]=='50000-100000')
+	>2</option>
+	<option value="3"
+	<?php
+if($row['band']=='3')
 {
 	echo "selected";
 }
 ?>
- >50000-100000</option>
-<option value="100000"
-<?php
-if($row["payscale"]=='100000')
+	>3</option>
+	<option value="4"
+	<?php
+if($row['band']=='4')
 {
 	echo "selected";
 }
 ?>
->100000</option>
+	>4</option>
+	<option value="5"
+	<?php
+if($row['band']=='5')
+{
+	echo "selected";
+}
+?>
+	>5</option>
 	</select>
 	</td>
-                        </tr>
-						
-                        <tr>
-                            <td align="left">
-                                <span class="text_big_team">Salary</span>
-                            </td>
-                            <td align="left">
-                                <input value="<?php echo $row['salary']?>" name="tds" type="text" id="tds" class="form-control" placeholder="enter salary" style="width:199px;" />
-                            </td>
-                        </tr>
+    </tr>   
 						
 						<tr>
                             <td align="left">
@@ -841,7 +638,7 @@ if($row["payscale"]=='100000')
                             <td align="left">
                                 <input type="radio" name="mealfacility" id="mealfacility" value="yes"
 								 <?php
-	if($row['mealfacility']=='yes')
+	if($row['MealFacility']=='yes')
 	{
 		echo "checked";
 	}
@@ -849,7 +646,7 @@ if($row["payscale"]=='100000')
 								/>yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <input type="radio" name="mealfacility" id="mealfacility" value="no"
 								 <?php
-	if($row['mealfacility']=='no')
+	if($row['MealFacility']=='no')
 	{
 		echo "checked";
 	}
@@ -865,7 +662,7 @@ if($row["payscale"]=='100000')
                             <td align="left">
                                 <input type="radio" name="cabfacility" id="cabfacility"  value="yes"
  <?php
-	if($row['cabfacility']=='yes')
+	if($row['CabFacility']=='yes')
 	{
 		echo "checked";
 	}
@@ -873,7 +670,7 @@ if($row["payscale"]=='100000')
 								/>yes&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <input type="radio" name="cabfacility" id="cabfacility" value="no" 
 								 <?php
-	if($row['cabfacility']=='no')
+	if($row['CabFacility']=='no')
 	{
 		echo "checked";
 	}
@@ -884,10 +681,10 @@ if($row["payscale"]=='100000')
 						
 						<tr>
                             <td align="left">
-                                <span class="text_big_team">City</span>
+                                <span class="text_big_team">Current Address</span>
                             </td>
                             <td align="left">
-                                <input value="<?php echo $row['city'] ?>" name="city" type="text" id="city" class="form-control" placeholder="enter city" style="width:199px;" />
+                                <textarea name="address" rows="6" type="text" id="address" class="form-control" placeholder="enter address" style="width:199px;" /><?php echo $row['current_address'] ?></textarea>
                             </td>
                         </tr>
 						
@@ -900,76 +697,7 @@ if($row["payscale"]=='100000')
                             </td>
                         </tr>
 						
-						<tr>
-                            <td align="left">
-                                <span class="text_big_team">Aadhar Number</span>
-                            </td>
-                            <td align="left"><img src="uploaded/<?php echo $row['aadharnumber']; ?>" style="width:50px;height:50px"> <?php echo $row['aadharnumber'];?>
-                                <input type="file" name="upload[]" accept=".png,.jpg,.jpeg"  placeholder="enter AadharNumber">
-                            </td>
-                        </tr>
 						
-						<tr>
-                            <td align="left">
-                                <span class="text_big_team">Pan Number</span>
-                            </td>
-                            <td align="left"><img src="uploaded/<?php echo $row['pannumber']; ?>" style="width:50px;height:50px"> <?php echo $row['pannumber'];?>
-                                <input type="file" name="upload[]" accept=".png,.jpg,.jpeg" placeholder="enter PanNumber">
-                            </td>
-                        </tr>
-						
-						<tr>
-                            <td align="left">
-                                <span class="text_big_team">10th Marksheet</span>
-                            </td>
-                            <td align="left"><img src="uploaded/<?php echo $row['ssc']; ?>" style="width:50px;height:50px"> <?php echo $row['ssc'];?>
-                                <input type="file" name="upload[]" accept=".png,.jpg,.jpeg"  placeholder="enter 10th marksheet">
-                            </td>
-                        </tr>
-						
-						<tr>
-                            <td align="left">
-                                <span class="text_big_team">12th Marksheet</span>
-                            </td>
-                            <td align="left"><img src="uploaded/<?php echo $row['hsc']; ?>" style="width:50px;height:50px"> <?php echo $row['hsc'];?>
-                                <input type="file" name="upload[]" accept=".png,.jpg,.jpeg"  placeholder="enter 10th marksheet">
-                            </td>
-                        </tr>
-						
-                        <tr>
-                            <td align="left">
-                                <span class="text_big_team">Status</span>
-                            </td>
-                            <td align="left">
-                               <select name="status" id="status" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:200px;">
-									<option value="">Select</option>
-										<option value="active"
-										<?php
-if($row['status']=='active')
-{
-	echo "selected";
-}
-?>
-										>active</option>
-									<option value="update"
-									<?php
-if($row['status']=='update')
-{
-	echo "selected";
-}
-?>
-									>update</option>
-									<option value="pending"
-									<?php
-if($row['status']=='pending')
-{
-	echo "selected";
-}
-?>
-									>pending</option>
-										</select>
-                            </td>
-                        </tr>
                          <input type='hidden' name='id' value= "<?php echo $row['id'] ?>">
                         
                         <tr>
@@ -1003,9 +731,6 @@ if($row['status']=='pending')
                     </div>
                     </div>
                     </div>
-                 <!--   </div>
-                    
-    </div>        -->
 </form>
 </body>
 </html>

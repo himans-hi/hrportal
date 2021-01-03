@@ -1,13 +1,10 @@
 <?php
-// print_r($_COOKIE);
-//include('validate.php');
-// include('index.php');
+
 if(!isset($_COOKIE["type"])&& !isset($_COOKIE["user"]))
 {
 	header("Location:login2.php");
 }
- 
-if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="hod"))
+if(($_COOKIE['type']=="auth"))
 {	
 ?>
 <!DOCTYPE html>
@@ -42,6 +39,8 @@ if(($_COOKIE['type']=="admin")||($_COOKIE['type']=="hr")||($_COOKIE['type']=="ho
             color: #D8D4D8;
             font-size: 24px;
         }
+		
+	
     </style>
 
   
@@ -178,6 +177,30 @@ return con;
     {
         position: relative;
     }
+	
+    .pagination {
+    display: block;
+    text-align: center;
+    margin: 0;
+    }
+
+    .pagination li {
+    display:inline-block;
+    margin: 0 5px 0 0;
+    }
+
+    .pagination li a{
+    border: none;
+    background: #1e90ff;
+    color: #fff;
+    }
+
+    .pagination li a:hover,
+    .pagination > li > a:focus{
+    color:#fff;
+    background:#333;
+    }
+
 </style>
 
 <script type='text/javascript'>
@@ -209,7 +232,7 @@ return con;
             <div class="main">
                 <div class="top_bar">
                     <h2>
-                        Display Data</h2>
+                        Read Data</h2>
                 </div>
             
   
@@ -224,11 +247,6 @@ return con;
 
  <div class="card shadow mb-12"> 
  <div class="card-header py-6">  
-<h4 class="m-0 font-weight-bold text-primary"><b>Admin Profile</b>
-<a href="form4.php"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#employeeform">
-Add Employee Data
-</button></a>
-</h4>
 
 <div class="card-body">
 <!-- <div class="text-warning text-center">
@@ -239,67 +257,39 @@ Add Employee Data
 <table class="table table-striped table-bordered">
               <thead>
                  <tr>
-			     <th width="20%"><b>id</b></th>
-                 <th width="20%"><b>Name</b></th>
-                <!-- <th>department</th>
-                <!-- <th>departmentLocation</th>  -->
-				 <th width="20%"><b>contact</b></th>
-                 <th width="50%"><b>email</b></th>
+			     <th width="5%"><b>id</b></th>
+                 <th width="15%"><b>Name</b></th>
+                 <th width="15%">department</th>
+                 <th width="5%">departmentLocation</th> 
+				 <th width="15%"><b>contact</b></th>
+                 <th width="30%"><b>email</b></th>
 				<!-- <th>subject</th>-->
-				 <th width="20%"><b>password</b></th>
+				<!-- <th width="30%"><b>password</b></th>  -->
 				<!-- <th>Salary</th>
-				 <th>Cab Facility</th> 
-				 <th>Pincode</th> --> 
-				 <th width="20%"><b>AadharNumber</b></th>
-                 <th width="20%"><b>PanNumber</b></th>
-				 <th width="20%"><b>10thMarksheet</b></th>
-                 <th width="20%"><b>12thMarksheet</b></th>
-				<!-- <th>Status</th> -->
+				 <th>Cab Facility</th> -->
+				 <th width="20%">Pincode</th> 
+				 
 				 <th width="20%"><b>Action</b></th>
                  </tr>
                </thead>
                <tbody>
 <?php
  include('config/require.php');
-  
-  
- // $query="select * from students order by id";
- 
- $query="select * from students order by id"; 
+      
+       $query="select * from students order by id"; 
        $result=mysqli_query($conn,$query);
 	   
 	   while($row = mysqli_fetch_array($result)) {
     
 	echo "<tr>";
 	echo "<td>".$row["id"]."</td>";
-	echo "<td>".$row["fname"].'&nbsp'.$row["lname"]."</td>";
-//	echo "<td>".$row["department"]."</td>";
-//	echo "<td>".$row["departmentlocation"]."</td>";
+	echo "<td>".$row["Fname"].'&nbsp'.$row["Lname"]."</td>";
+	echo "<td>".$row["Department"]."</td>";
+	echo "<td>".$row["DepartmentLocation"]."</td>";
 	echo "<td>".$row["contact"]."</td>";
 	echo "<td>".$row["email"]."</td>";
-//	echo "<td>".$row["subject"]."</td>";
-	echo "<td>".$row["password"]."</td>";
-//	echo "<td>".$row["accountmanager"]."</td>";
-//	echo "<td>".$row["grade"]."</td>";
-//	echo "<td>".$row["payscale"]."</td>";
-//	echo "<td>".$row["salary"]."</td>";
-//	echo "<td>".$row["mealfacility"]."</td>";
-//	echo "<td>".$row["cabfacility"]."</td>";
-//	echo "<td>".$row["city"]."</td>";
-//	echo "<td>".$row["pincode"]."</td>";	
-//	echo "<td><a href='uploaded/$row[aadharnumber]'><img src='uploaded/".$row['aadharnumber']."' height='30' width='30'/>uploaded/".$row['aadharnumber']."</a></td>";
-	echo "<td><a href='uploaded/$row[aadharnumber]'><img src='uploaded/".$row['aadharnumber']."' height='40' width='50'/></a></td>";
-//	echo "<td><a href='uploaded/$row[pannumber]'><img src='uploaded/".$row['pannumber']."' height='30' width='30'/>".$row["pannumber"]."</a></td>";
-	echo "<td><a href='uploaded/$row[pannumber]'><img src='uploaded/".$row['pannumber']."' height='40' width='50'/></a></td>";
-	
-//	echo "<td><a href='uploaded/$row[ssc]'><img src='uploaded/".$row['ssc']."' height='30' width='30'/>uploaded/".$row['ssc']."</a></td>";
-	
-	echo "<td><a href='uploaded/$row[ssc]'><img src='uploaded/".$row['ssc']."' height='40' width='50'/></a></td>";
-	
-//	echo "<td><a href='uploaded/$row[hsc]'><img src='uploaded/".$row['hsc']."' height='30' width='30'/>uploaded/".$row["hsc"]."</a></td>";
-	
-	echo "<td><a href='uploaded/$row[hsc]'><img src='uploaded/".$row['hsc']."' height='40' width='50'/></a></td>";
-//	echo "<td>".$row["status"]."</td>";
+//	echo "<td>".$row["password"]."</td>";
+	echo "<td>".$row["pincode"]."</td>";	
 	echo "<td width=950>";
 	echo  '<a class="glyphicon glyphicon-pencil" href="edit.php?id='.$row['id'].'"></a>';
     ?>
@@ -321,6 +311,7 @@ $conn->close();
 </div>  
 </div>
 </div>
+<br/>
 <br/>
     <div class="footer_fix">
         Copyright &copy;

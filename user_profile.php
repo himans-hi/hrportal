@@ -3,6 +3,7 @@ if(!isset($_COOKIE["type"]) && !isset($_COOKIE["user"]))
  {
 	 header("Location:login2.php");
  }
+// print_r($_COOKIE);
 ?>
 
 <!DOCTYPE html>
@@ -323,7 +324,7 @@ include('config/require.php');
 	echo "<td>".$row["requirements"]."</td>";
 	echo "<td>".$row["terms"]."</td>";
 	echo "<td>".$row["event_date"]."</td>";
-    echo "<td><a href='uploaded/$row[image]'><img src='uploaded/".$row['image']."' height='40' width='50'/></a></td>";
+    echo "<td><a href='uploaded/$row[image]'><img src='event_images/".$row['image']."' height='40' width='50'/></a></td>";
 //	echo "<td width=950>";
 //	echo  '<a class="fas fa-pencil-alt" href="editevent.php?id='.$row['id'].'"></a>';
 	?>
