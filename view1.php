@@ -318,8 +318,15 @@ return con;
 	   
 	   echo '<ul class="pagination admin-pagination">';
 	   for($i=1; $i<=$total_pages; $i++){
- 
-        echo '<li><a href="view1.php?page='.$i.'">'.$i.'</a></li>';
+		   if($i == $page)
+		   {
+			   $active ="active";
+		   }
+		   else{
+			   $active ="";
+		   }
+			   
+        echo '<li class="'.$active.'"><a href="view1.php?page='.$i.'">'.$i.'</a></li>';
 
 	   }		   
 		echo '</ul>';
