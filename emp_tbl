@@ -1,0 +1,72 @@
+/*
+SQLyog Community v13.1.6 (64 bit)
+MySQL - 10.4.14-MariaDB : Database - emp
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`emp` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `emp`;
+
+/*Table structure for table `login` */
+
+DROP TABLE IF EXISTS `login`;
+
+CREATE TABLE `login` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `user_type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `login` */
+
+insert  into `login`(`username`,`password`,`user_type`) values 
+('auth','auth@123','auth'),
+('guest','guest@123','guest');
+
+/*Table structure for table `students` */
+
+DROP TABLE IF EXISTS `students`;
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Fname` varchar(20) NOT NULL,
+  `Lname` varchar(20) NOT NULL,
+  `Department` varchar(20) NOT NULL,
+  `DepartmentLocation` varchar(20) NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `married` varchar(10) NOT NULL,
+  `PASSWORD` varchar(20) NOT NULL,
+  `band` varchar(5) NOT NULL,
+  `MealFacility` varchar(10) NOT NULL,
+  `CabFacility` varchar(10) NOT NULL,
+  `current_address` varchar(500) NOT NULL,
+  `pincode` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `students` */
+
+insert  into `students`(`id`,`Fname`,`Lname`,`Department`,`DepartmentLocation`,`contact`,`email`,`married`,`PASSWORD`,`band`,`MealFacility`,`CabFacility`,`current_address`,`pincode`) values 
+(1,'Himanshi','gupta','Enterprise&Solutions','Bihar','9811703809','himanshigupta1111@gm','married','1234','2','yes','no','house no-179,ward no-5,brahmanwara,blb(fbd)','121004'),
+(2,'rajni','rajput','Finance&Accounts','Bangladesh','7853789570','rajni.rajput01@gmail.com','single','rajni123','2','no','no','agra','121004'),
+(3,'ram','goyal','Enterprise&Solutions','Bangladesh','9878956755','ram.goyal01@gmail.com','married','ram121','1','no','no','Mumbai','109234'),
+(4,'amarjeet','jaiswar','Finance&Accounts','Bangladesh','8437895798','amarjeetjaiswar01@gmail.com','married','amarjeet123','2','no','no','pune','131009'),
+(5,'ritika','khurana','HR&Administration','Bangalore','8758956798','ritika.khurana01@gmail.com','single','ritika01','3','no','no','karnataka','131199'),
+(6,'lalit','goyal','Finance&Accounts','Bangladesh','8734894371','lalit.goyal01@gmail.com','married','lalit01','3','no','no','noida','141011'),
+(7,'abcd','gupta','HR&Administration','Chennai','8437895451','abcgupta1111@gmail.com','single','abc@123','3','no','no','fariabad','121011'),
+(9,'rampal','jain','HR&Administration','Bangladesh','8979878909','rampal.jain01@gmail.com','married','rampal012','4','no','no','andhra pradesh','131141');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
